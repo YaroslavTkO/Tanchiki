@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class TankMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private GameObject tank;
+    private GameObject turret;
+
+
+    readonly private float _speed = 3f;
+    readonly private float _rotationSpeed = 100f;
     void Start()
     {
-        
+        tank = gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        MoveTank();
+        RotateTank();
+    }
+
+    public void MoveTank()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            tank.transform.position += tank.transform.right * Time.deltaTime * _speed;
+
+    }
+
+    public void RotateTank()
+    {
+        float rotateAroundZ = -Input.GetAxisRaw("Horizontal") * _rotationSpeed;
+
+        tank.transform.Rotate(0, 0, rotateAroundZ * Time.deltaTime);
     }
 }
