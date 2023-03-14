@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private Vector3 direction = Vector3.zero;
 
 
-    readonly private float speed = 9f;
+    readonly private float speed = 18f;
     readonly private float lifeTime = 4f;
     private float lifeTimeTimer = 0;
 

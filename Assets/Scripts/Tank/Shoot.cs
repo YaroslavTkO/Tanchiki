@@ -6,11 +6,15 @@ public class Shoot : MonoBehaviour
 {
     private GameObject turret;
     public GameObject bulletPrefab;
-    
+
+    readonly private float reloadTime = 1f;
+    private float reloadTimeTimer = 0f;
+
     void Start()
     {
         turret = gameObject;
-        
+        reloadTimeTimer = Time.time;
+
     }
     void Update()
     {
@@ -19,10 +23,20 @@ public class Shoot : MonoBehaviour
 
     private void ToShoot()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Return) && Reloaded())
         {
-            var obj = Instantiate(bulletPrefab, turret.transform.position + turret.transform.right, Quaternion.identity);
+            var obj = Instantiate(bulletPrefab, turret.transform.position, Quaternion.identity);
             obj.GetComponent<Bullet>().Direction = turret.transform.right;
         }
+    }
+
+    private bool Reloaded()
+    {
+        if(Time.time - reloadTimeTimer >= reloadTime)
+        {
+            reloadTimeTimer = Time.time;
+            return true;
+        }
+        return false;
     }
 }
