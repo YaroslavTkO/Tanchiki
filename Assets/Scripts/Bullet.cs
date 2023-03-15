@@ -7,26 +7,26 @@ public class Bullet : MonoBehaviour
     private GameObject bullet;
     private Vector3 direction = Vector3.zero;
 
-
+    readonly private int damage = 1;
     readonly private float speed = 18f;
     readonly private float lifeTime = 4f;
     private float lifeTimeTimer = 0;
 
-    private bool leftTankCollision = false;
+    private bool leftOriginalTankCollider = false;
 
     public Vector3 Direction
     {
         set { direction = value; }
     }
 
-    void Start()
+    private void Start()
     {
         bullet = gameObject;
         lifeTimeTimer = Time.time;
         
     }
 
-    void Update()
+    private void Update()
     {
         MoveBullet();
         LifeCountdown();
@@ -46,18 +46,26 @@ public class Bullet : MonoBehaviour
 
     }
 
+    private void DamageTank(GameObject tank)
+    {
+        if(tank.TryGetComponent<TankHealth>(out var tankClass))
+        {
+            tankClass.changeHp(-damage);
+        }
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (leftTankCollision)
+        if (leftOriginalTankCollider)
         {
-            Debug.Log("Booom!");
-
+            DamageTank(collision.gameObject);
             Destroy(bullet);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        leftTankCollision = true;
+        leftOriginalTankCollider = true;
     }
 }

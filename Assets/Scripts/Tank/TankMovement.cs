@@ -29,12 +29,12 @@ public class TankMovement : MonoBehaviour
         tank.transform.Rotate(0, 0, rotate);
     }
 
-    void Start()
+    private void Start()
     {
         tank = gameObject;
     }
 
-    void Update()
+    private void Update()
     {
         MoveTank();
         RotateTank();

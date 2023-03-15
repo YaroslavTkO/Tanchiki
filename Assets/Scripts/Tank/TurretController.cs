@@ -8,13 +8,13 @@ public class TurretController : MonoBehaviour
 
     readonly private float _rotationSpeed = 80f;
 
-    void Start()
+    private void Start()
     {
         turret = gameObject;
         
     }
 
-    void Update()
+    private void Update()
     {
         RotateTurret();
     }

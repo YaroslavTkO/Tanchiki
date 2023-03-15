@@ -10,13 +10,13 @@ public class Shoot : MonoBehaviour
     readonly private float reloadTime = 1f;
     private float reloadTimeTimer = 0f;
 
-    void Start()
+    private void Start()
     {
         turret = gameObject;
         reloadTimeTimer = Time.time;
 
     }
-    void Update()
+    private void Update()
     {
         ToShoot();
     }
