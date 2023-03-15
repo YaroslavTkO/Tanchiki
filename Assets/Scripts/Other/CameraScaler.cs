@@ -21,6 +21,7 @@ public class CameraScaler : MonoBehaviour
         var width = size.x;
         var height = size.y;
 
-        _camera.orthographicSize = ((width > height * _camera.aspect) ? width / (float)_camera.pixelWidth * _camera.pixelHeight : height) / 2;
+        _camera.orthographicSize = ((width > height * _camera.aspect) ?
+            width / (float)_camera.pixelWidth * _camera.pixelHeight : height) / 2;
     }
 }
