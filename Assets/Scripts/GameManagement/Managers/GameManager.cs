@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform firstSpawn, secondSpawn;
 
-    readonly private int RoundTime = 30;
+    readonly private int RoundTime = 90;
     private float RoundTimer = 0;
 
     private GameObject GetTankPrefab { get { return Resources.Load("Tank") as GameObject; } }
