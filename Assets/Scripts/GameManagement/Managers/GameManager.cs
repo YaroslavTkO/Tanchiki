@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private Player firstPlayer, secondPlayer;
     [SerializeField]
     private Transform firstSpawn, secondSpawn;
+    [SerializeField]
+    private Controls firstPlayerControls, secondPlayerControls;
 
     readonly private int RoundTime = 90;
     private float RoundTimer = 0;
@@ -41,8 +43,8 @@ public class GameManager : MonoBehaviour
     {
         var tankPrefab = GetTankPrefab;
 
-        firstPlayer = new Player(tankPrefab, firstSpawn.position);
-        secondPlayer = new Player(tankPrefab, secondSpawn.position);
+        firstPlayer = new Player(tankPrefab, firstSpawn.position, firstPlayerControls);
+        secondPlayer = new Player(tankPrefab, secondSpawn.position, secondPlayerControls);
 
         RoundTimer = Time.time;
     }

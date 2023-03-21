@@ -5,28 +5,44 @@ using UnityEngine;
 public class TankMovement : MonoBehaviour
 {
     private GameObject tank;
+    private Controls controls;
 
     readonly private float _speed = 3f;
-    readonly private float _rotationSpeed = 60f;
-    readonly private float backwardSpeedMultiplier = 0.5f;
+    readonly private float _rotationSpeed = 0.8f;
+
+    public Controls Controls
+    {
+        get { return controls; }
+        set
+        {
+            if (controls == null)
+                controls = value;
+        }
+    }
+
+    private void ControlTank()
+    {
+
+        if (controls.TryGetAngleOfMovementJoystick(out var angle))
+        {
+            RotateTank(angle);
+            MoveTank();
+        }
+    }
+
+    private void RotateTank(float angleToRotate)
+    {
+        var dir = Quaternion.Euler(0, 0, angleToRotate);
+        float rotate = _rotationSpeed * Time.deltaTime;
+        
+        tank.transform.rotation = Quaternion.Lerp(tank.transform.rotation, dir, rotate);
+    }
 
     private void MoveTank()
     {
-
-        float input = Input.GetAxisRaw("Vertical");
-        if (input < 0)
-            input *= backwardSpeedMultiplier;
-
+        float input = controls.getMovementJoystickDirection().magnitude;
         Vector3 movement = input * tank.transform.right * Time.deltaTime * _speed;
         tank.transform.position += movement;
-
-    }
-
-    private void RotateTank()
-    {
-        float rotate = -Input.GetAxisRaw("Horizontal") * _rotationSpeed * Time.deltaTime;
-
-        tank.transform.Rotate(0, 0, rotate);
     }
 
     private void Start()
@@ -36,9 +52,10 @@ public class TankMovement : MonoBehaviour
 
     private void Update()
     {
-        MoveTank();
-        RotateTank();
+        ControlTank();
     }
+
+
 
 
 }

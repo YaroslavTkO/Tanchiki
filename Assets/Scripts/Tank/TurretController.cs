@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
-    private GameObject turret;
 
-    readonly private float _rotationSpeed = 80f;
+    private GameObject turret;
+    private Controls controls;
+
+    readonly private float _rotationSpeed = 60f;
+
+    public Controls Controls
+    {
+        get { return controls; }
+        set
+        {
+            if (controls == null)
+                controls = value;
+        }
+    }
 
     private void Start()
     {
         turret = gameObject;
-        
+
     }
 
     private void Update()
@@ -21,8 +33,7 @@ public class TurretController : MonoBehaviour
 
     private void RotateTurret()
     {
-        float rotateLeft = Input.GetKey(KeyCode.Z) ? _rotationSpeed * Time.deltaTime : 0;
-        float rotateRight = Input.GetKey(KeyCode.X) ?  -_rotationSpeed * Time.deltaTime : 0;
-        turret.transform.Rotate(0, 0, rotateLeft + rotateRight);
+        float rotate = -controls.getTurretJoystickHorizontal() * _rotationSpeed * Time.deltaTime;
+        turret.transform.Rotate(0, 0, rotate);
     }
 }

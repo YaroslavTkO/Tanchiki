@@ -18,12 +18,12 @@ public class Shoot : MonoBehaviour
     }
     private void Update()
     {
-        ToShoot();
+        //ToShoot();
     }
 
     private void ToShoot()
     {
-        if (Input.GetKey(KeyCode.Return) && Reloaded())
+        if (Reloaded())
         {
             var obj = Instantiate(bulletPrefab, turret.transform.position, Quaternion.identity);
             obj.GetComponent<Bullet>().Direction = turret.transform.right;
@@ -32,11 +32,16 @@ public class Shoot : MonoBehaviour
 
     private bool Reloaded()
     {
-        if(Time.time - reloadTimeTimer >= reloadTime)
+        if (Time.time - reloadTimeTimer >= reloadTime)
         {
             reloadTimeTimer = Time.time;
             return true;
         }
         return false;
+    }
+
+    public void AssignShootMethodToButton(Controls controls)
+    {
+        controls.addFunctionToFireButton(ToShoot);
     }
 }
