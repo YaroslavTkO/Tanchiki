@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TankMovement : MonoBehaviour
@@ -34,7 +32,7 @@ public class TankMovement : MonoBehaviour
     {
         var dir = Quaternion.Euler(0, 0, angleToRotate);
         float rotate = _rotationSpeed * Time.deltaTime;
-        
+
         tank.transform.rotation = Quaternion.Lerp(tank.transform.rotation, dir, rotate);
     }
 

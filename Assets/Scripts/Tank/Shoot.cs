@@ -16,11 +16,6 @@ public class Shoot : MonoBehaviour
         reloadTimeTimer = Time.time;
 
     }
-    private void Update()
-    {
-        //ToShoot();
-    }
-
     private void ToShoot()
     {
         if (Reloaded())

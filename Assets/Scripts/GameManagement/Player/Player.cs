@@ -23,6 +23,10 @@ public class Player
     {
         ++score;
     }
+    public bool IsTankEquals(GameObject tank)
+    {
+        return this.tank == tank;
+    }
 
     public void SpawnTank(GameObject tankPrefab)
     {
@@ -30,12 +34,6 @@ public class Player
         SetControlsToTank();
 
     }
-
-    public bool IsTankEquals(GameObject tank)
-    {
-        return this.tank == tank;
-    }
-
     private void SetControlsToTank()
     {
         if (tank.TryGetComponent<TankMovement>(out var tankMovement))
