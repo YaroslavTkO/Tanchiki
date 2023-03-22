@@ -77,12 +77,7 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        //Show winner & results
-
-        Debug.Log("Game ended\nResults:\nFirst player: " + firstPlayer.Score + "\nSecond player: " + secondPlayer.Score);
-
-        //Open End Game Panel
-
+        uiManager.OpenEndGameScreen(firstPlayer.Score, secondPlayer.Score);
     }
 
 }
