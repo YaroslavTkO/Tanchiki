@@ -9,13 +9,15 @@ public class Player
     private Vector3 respawnPoint;
     readonly private Controls controls;
 
+    private GameObject GetTankPrefab { get { return Resources.Load("Tank") as GameObject; } }
+
     public int Score { get { return score; } }
 
-    public Player(GameObject tankPrefab, Vector3 respawnPoint, Controls controls)
+    public Player(Vector3 respawnPoint, Controls controls)
     {
         this.respawnPoint = respawnPoint;
         this.controls = controls;
-        SpawnTank(tankPrefab);
+        SpawnTank();
 
     }
 
@@ -27,15 +29,18 @@ public class Player
     {
         return this.tank == tank;
     }
-
-    public void SpawnTank(GameObject tankPrefab)
+    public void SpawnTank()
     {
-        tank = Object.Instantiate(tankPrefab, respawnPoint, Quaternion.identity);
-        SetControlsToTank();
+        if (tank != null)
+            Object.Destroy(tank);
+        tank = Object.Instantiate(GetTankPrefab, respawnPoint, Quaternion.identity);
 
+        SetControlsToTank();
     }
     private void SetControlsToTank()
     {
+       
+
         if (tank.TryGetComponent<TankMovement>(out var tankMovement))
         {
             tankMovement.Controls = controls;
@@ -44,6 +49,8 @@ public class Player
         var turretController = tank.GetComponentInChildren<TurretController>();
         if (turretController != null)
             turretController.Controls = controls;
+
+        controls.RemoveListenersFromFireButton();
         var shoot = tank.GetComponentInChildren<Shoot>();
         if (shoot != null)
             shoot.AssignShootMethodToButton(controls);

@@ -38,8 +38,8 @@ public class TankMovement : MonoBehaviour
 
     private void MoveTank()
     {
-        float input = controls.getMovementJoystickDirection().magnitude;
-        Vector3 movement = input * tank.transform.right * Time.deltaTime * _speed;
+        float inputSpeed = controls.getMovementJoystickSpeed();
+        Vector3 movement = inputSpeed * tank.transform.right * Time.deltaTime * _speed;
         tank.transform.position += movement;
     }
 

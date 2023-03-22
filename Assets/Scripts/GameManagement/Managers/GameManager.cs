@@ -13,14 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Controls firstPlayerControls, secondPlayerControls;
 
-    readonly private int RoundTime = 90;
-    private float RoundTimer = 0;
-
-    private GameObject GetTankPrefab { get { return Resources.Load("Tank") as GameObject; } }
 
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(Instance);
         }
@@ -32,59 +28,55 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        CreatePlayers();
     }
-    private void Update()
+    private void CreatePlayers()
     {
-        Timer();
+
+        firstPlayer = new Player(firstSpawn.position, firstPlayerControls);
+        secondPlayer = new Player(secondSpawn.position, secondPlayerControls);
     }
 
-    private void StartGame()
+    private void EndGame()
     {
-        var tankPrefab = GetTankPrefab;
+        //Show winner & results
 
-        firstPlayer = new Player(tankPrefab, firstSpawn.position, firstPlayerControls);
-        secondPlayer = new Player(tankPrefab, secondSpawn.position, secondPlayerControls);
+        Debug.Log("Game ended\nResults:\nFirst player: " + firstPlayer.Score + "\nSecond player: " + secondPlayer.Score);
+        
+        //Open End Game Panel
 
-        RoundTimer = Time.time;
     }
 
-    private void Timer()
-    {
-        if(Time.time - RoundTimer >= RoundTime)
-        {
-            //EndGame
-
-
-            CalculateWinner();
-
-            Destroy(gameObject);
-        }
-    }
-    public void RespawnPlayers(GameObject destroyedTank)
+    public void FinishRound(GameObject destroyedTank)
     {
         if (firstPlayer.IsTankEquals(destroyedTank))
         {
             secondPlayer.AddScore();
-            firstPlayer.SpawnTank(GetTankPrefab);
-
         }
         else if (secondPlayer.IsTankEquals(destroyedTank))
         {
             firstPlayer.AddScore();
-            secondPlayer.SpawnTank(GetTankPrefab);
-
         }
+
+        if (IsGameEnded())
+            EndGame();
+        else StartCoroutine(StartNewRound());
+
     }
-    public void CalculateWinner()
+
+    private IEnumerator StartNewRound()
     {
-        Debug.Log(firstPlayer.Score + "----" + secondPlayer.Score);
+        yield return new WaitForSeconds(3);
 
-        if (firstPlayer.Score > secondPlayer.Score)
-            Debug.Log("First player won!");
-        else if (firstPlayer.Score < secondPlayer.Score)
-            Debug.Log("Secon player won!");
-        else Debug.Log("Draw!");
+        firstPlayer.SpawnTank();
+        secondPlayer.SpawnTank();
+    }
 
+    private bool IsGameEnded()
+    {
+        if (firstPlayer.Score < 5 && secondPlayer.Score < 5)
+            return false;
+
+        return true;
     }
 }

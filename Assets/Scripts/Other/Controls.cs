@@ -32,19 +32,29 @@ public class Controls : MonoBehaviour
 
         return true;
     }
-    public Vector2 getMovementJoystickDirection()
+    public float getMovementJoystickSpeed()
     {
-        return movementJoystick.Direction;
+        return movementJoystick.Direction.magnitude;
     }
     public float getTurretJoystickHorizontal()
     {
         return turretJoystick.Horizontal;
     }
 
-    public void addFunctionToFireButton(Action fireFunction)
+    public void addListenerToFireButton(Action fireFunction)
     {
         fireButton.onClick.AddListener(() => fireFunction());
 
+    }
+
+    public void RemoveListenersFromFireButton()
+    {
+        fireButton.onClick.RemoveAllListeners();
+    }
+
+    private void OnDestroy()
+    {
+        RemoveListenersFromFireButton();
     }
 
 

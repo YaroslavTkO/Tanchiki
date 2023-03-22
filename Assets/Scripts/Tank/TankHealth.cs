@@ -23,7 +23,7 @@ public class TankHealth : MonoBehaviour
 
     private void DestroyTank()
     {
-        GameManager.Instance.RespawnPlayers(tank);
+        GameManager.Instance.FinishRound(tank);
         Destroy(tank);
     }
 }

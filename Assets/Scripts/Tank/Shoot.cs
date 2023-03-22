@@ -37,6 +37,6 @@ public class Shoot : MonoBehaviour
 
     public void AssignShootMethodToButton(Controls controls)
     {
-        controls.addFunctionToFireButton(ToShoot);
+        controls.addListenerToFireButton(ToShoot);
     }
 }
