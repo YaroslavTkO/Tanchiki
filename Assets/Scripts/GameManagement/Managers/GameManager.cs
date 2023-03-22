@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private Transform firstSpawn, secondSpawn;
     [SerializeField]
     private Controls firstPlayerControls, secondPlayerControls;
+    [SerializeField]
+    private UIManager uiManager;
 
 
     private void Awake()
@@ -37,16 +39,6 @@ public class GameManager : MonoBehaviour
         secondPlayer = new Player(secondSpawn.position, secondPlayerControls);
     }
 
-    private void EndGame()
-    {
-        //Show winner & results
-
-        Debug.Log("Game ended\nResults:\nFirst player: " + firstPlayer.Score + "\nSecond player: " + secondPlayer.Score);
-        
-        //Open End Game Panel
-
-    }
-
     public void FinishRound(GameObject destroyedTank)
     {
         if (firstPlayer.IsTankEquals(destroyedTank))
@@ -64,14 +56,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private IEnumerator StartNewRound()
-    {
-        yield return new WaitForSeconds(3);
-
-        firstPlayer.SpawnTank();
-        secondPlayer.SpawnTank();
-    }
-
     private bool IsGameEnded()
     {
         if (firstPlayer.Score < 5 && secondPlayer.Score < 5)
@@ -79,4 +63,26 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
+
+    private IEnumerator StartNewRound()
+    {
+
+        uiManager.OpenBetweenRoundsScreen(firstPlayer.Score, secondPlayer.Score);
+
+        yield return new WaitForSeconds(3);
+
+        firstPlayer.SpawnTank();
+        secondPlayer.SpawnTank();
+    }
+
+    private void EndGame()
+    {
+        //Show winner & results
+
+        Debug.Log("Game ended\nResults:\nFirst player: " + firstPlayer.Score + "\nSecond player: " + secondPlayer.Score);
+
+        //Open End Game Panel
+
+    }
+
 }

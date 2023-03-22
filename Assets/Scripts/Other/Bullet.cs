@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
     }
     private void MoveBullet()
     {
-        bullet.transform.Translate(direction * speed * Time.deltaTime);
+        bullet.transform.Translate(speed * Time.deltaTime * direction);
 
     }
     
