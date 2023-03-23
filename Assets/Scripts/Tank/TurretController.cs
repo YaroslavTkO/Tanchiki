@@ -31,7 +31,7 @@ public class TurretController : MonoBehaviour
 
     private void RotateTurret()
     {
-        float rotate = -controls.getTurretJoystickHorizontal() * _rotationSpeed * Time.deltaTime;
+        float rotate = -controls.getTurretRotationInput() * _rotationSpeed * Time.deltaTime;
         turret.transform.Rotate(0, 0, rotate);
     }
 }

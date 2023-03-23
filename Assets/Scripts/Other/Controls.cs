@@ -6,9 +6,9 @@ public class Controls : MonoBehaviour
 {
     [SerializeField] private Joystick movementJoystick;
 
-    [SerializeField] private Joystick turretJoystick;
-
     [SerializeField] private Button fireButton;
+
+    private int turretInput;
     public bool TryGetAngleOfMovementJoystick(out float angle)
     {
         angle = 0;
@@ -36,9 +36,9 @@ public class Controls : MonoBehaviour
     {
         return movementJoystick.Direction.magnitude;
     }
-    public float getTurretJoystickHorizontal()
+    public float getTurretRotationInput()
     {
-        return turretJoystick.Horizontal;
+        return turretInput;
     }
 
     public void addListenerToFireButton(Action fireFunction)
@@ -57,6 +57,11 @@ public class Controls : MonoBehaviour
         RemoveListenersFromFireButton();
     }
 
+    public void ChangeTurretInput(int amountToChange)
+    {
+        turretInput += amountToChange;
+        Debug.Log(turretInput);
+    }
 
 
 

@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
     private void CreatePlayers()
     {
 
-        firstPlayer = new Player(firstSpawn.position, firstPlayerControls);
-        secondPlayer = new Player(secondSpawn.position, secondPlayerControls);
+        firstPlayer = new Player(firstSpawn, firstPlayerControls);
+        secondPlayer = new Player(secondSpawn, secondPlayerControls);
     }
 
     public void FinishRound(GameObject destroyedTank)

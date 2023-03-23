@@ -6,14 +6,14 @@ public class Player
 {
     private GameObject tank;
     private int score = 0;
-    private Vector3 respawnPoint;
+    readonly private Transform respawnPoint;
     readonly private Controls controls;
 
     private GameObject GetTankPrefab { get { return Resources.Load("Tank") as GameObject; } }
 
     public int Score { get { return score; } }
 
-    public Player(Vector3 respawnPoint, Controls controls)
+    public Player(Transform respawnPoint, Controls controls)
     {
         this.respawnPoint = respawnPoint;
         this.controls = controls;
@@ -33,13 +33,13 @@ public class Player
     {
         if (tank != null)
             Object.Destroy(tank);
-        tank = Object.Instantiate(GetTankPrefab, respawnPoint, Quaternion.identity);
+        tank = Object.Instantiate(GetTankPrefab, respawnPoint.position, respawnPoint.rotation);
 
         SetControlsToTank();
     }
     private void SetControlsToTank()
     {
-       
+
 
         if (tank.TryGetComponent<TankMovement>(out var tankMovement))
         {

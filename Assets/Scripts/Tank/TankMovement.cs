@@ -7,6 +7,7 @@ public class TankMovement : MonoBehaviour
 
     readonly private float _speed = 3f;
     readonly private float _rotationSpeed = 0.8f;
+    readonly private float _backwardSpeedMultiplier = -0.6f;
 
     public Controls Controls
     {
@@ -23,23 +24,34 @@ public class TankMovement : MonoBehaviour
 
         if (controls.TryGetAngleOfMovementJoystick(out var angle))
         {
-            RotateTank(angle);
-            MoveTank();
+            var angleDiff = Mathf.Abs((angle - tank.transform.eulerAngles.z + 180 + 360) % 360 - 180);
+            RotateTank(angle, angleDiff);
+            MoveTank(angleDiff);
         }
     }
 
-    private void RotateTank(float angleToRotate)
+    private void RotateTank(float angleToRotate, float angleDiff)
     {
         var dir = Quaternion.Euler(0, 0, angleToRotate);
         float rotate = _rotationSpeed * Time.deltaTime;
 
-        tank.transform.rotation = Quaternion.Lerp(tank.transform.rotation, dir, rotate);
+        if (angleDiff <= 120)
+        {
+            tank.transform.rotation = Quaternion.Lerp(tank.transform.rotation, dir, rotate);
+        }
+
+        
     }
 
-    private void MoveTank()
+    private void MoveTank(float angleDiff)
     {
+
         float inputSpeed = controls.getMovementJoystickSpeed();
         Vector3 movement = _speed * inputSpeed * Time.deltaTime * tank.transform.right;
+
+        if (angleDiff > 120)
+            movement *= _backwardSpeedMultiplier;
+
         tank.transform.position += movement;
     }
 
