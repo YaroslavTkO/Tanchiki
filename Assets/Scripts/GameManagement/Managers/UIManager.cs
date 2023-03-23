@@ -10,9 +10,13 @@ public class UIManager : MonoBehaviour
     private GameObject betweenRoundsScreenPrefab;
     [SerializeField]
     private GameObject endGameScreenPrefab;
+    [SerializeField]
+    private GameObject pauseScreenPrefab;
+
 
     private GameObject betweenRoundsScreen;
     private GameObject endGameScreen;
+    private GameObject pauseScreen;
 
     public void OpenBetweenRoundsScreen(int firstPlayerScore, int secondPlayerScore)
     {
@@ -51,6 +55,25 @@ public class UIManager : MonoBehaviour
         }
 
 
+    }
+
+    public void OpenPauseScreen()
+    {
+        pauseScreen = Instantiate(pauseScreenPrefab, transform);
+        var continueButton = pauseScreen.transform.Find("Continue");
+        if(continueButton != null)
+        {
+            continueButton.GetComponent<Button>().onClick.AddListener(ClosePauseScreen);
+        }
+        
+        Time.timeScale = 0;
+
+    }
+
+    private void ClosePauseScreen()
+    {
+        Time.timeScale = 1;
+        Destroy(pauseScreen);
     }
 
 
