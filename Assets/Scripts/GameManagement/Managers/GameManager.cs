@@ -27,10 +27,16 @@ public abstract class GameManager : MonoBehaviour
             Instance = this;
         }
     }
-
-    virtual protected void Start()
+    virtual public void StartGame(GameObject spawnPoints, GameObject controllers, UIManager uiManager)
     {
+        firstSpawn = spawnPoints.transform.Find("FirstSpawn").transform;
+        secondSpawn = spawnPoints.transform.Find("SecondSpawn").transform;
+        firstPlayerControls = controllers.transform.Find("FirstPlayerControls").GetComponent<Controls>();
+        secondPlayerControls = controllers.transform.Find("SecondPlayerControls").GetComponent<Controls>();
+        this.uiManager = uiManager;
+
         CreatePlayers();
+
     }
     private void CreatePlayers()
     {

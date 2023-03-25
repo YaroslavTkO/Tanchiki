@@ -60,7 +60,6 @@ public class Controls : MonoBehaviour
     public void ChangeTurretInput(int amountToChange)
     {
         turretInput += amountToChange;
-        Debug.Log(turretInput);
     }
 
 

@@ -14,9 +14,10 @@ public class KingOfTheHill : GameManager
             firstPlayer.SpawnTank();
         else secondPlayer.SpawnTank();
     }
-    override protected void Start()
+    override public void StartGame(GameObject spawnPoints, GameObject controllers, UIManager uiManager)
     {
-        base.Start();
+        base.StartGame(spawnPoints, controllers, uiManager);
+
         controlPoint = Instantiate(controlPointPrefab);
         
     }
