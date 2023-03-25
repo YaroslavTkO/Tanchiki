@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public abstract class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance { get; private set; }
 
-    private Player firstPlayer, secondPlayer;
+    protected Player firstPlayer, secondPlayer;
     [SerializeField]
     private Transform firstSpawn, secondSpawn;
     [SerializeField]
     private Controls firstPlayerControls, secondPlayerControls;
     [SerializeField]
-    private UIManager uiManager;
+    protected UIManager uiManager;
 
 
-    private void Awake()
+    protected void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    virtual protected void Start()
     {
         CreatePlayers();
     }
@@ -39,43 +39,19 @@ public class GameManager : MonoBehaviour
         secondPlayer = new Player(secondSpawn, secondPlayerControls);
     }
 
-    public void FinishRound(GameObject destroyedTank)
+    abstract public void ReceiveNotificationOfTheTankDestruction(GameObject destroyedTank);
+
+    protected bool IsGameEnded(int neededScoreToEndTheGame)
     {
-        if (firstPlayer.IsTankEquals(destroyedTank))
-        {
-            secondPlayer.AddScore();
-        }
-        else if (secondPlayer.IsTankEquals(destroyedTank))
-        {
-            firstPlayer.AddScore();
-        }
-
-        if (IsGameEnded())
-            EndGame();
-        else StartCoroutine(StartNewRound());
-
-    }
-
-    private bool IsGameEnded()
-    {
-        if (firstPlayer.Score < 5 && secondPlayer.Score < 5)
+        if (firstPlayer.Score < neededScoreToEndTheGame && secondPlayer.Score < neededScoreToEndTheGame)
             return false;
 
         return true;
     }
 
-    private IEnumerator StartNewRound()
-    {
+    
 
-        uiManager.OpenBetweenRoundsScreen(firstPlayer.Score, secondPlayer.Score);
-
-        yield return new WaitForSeconds(3);
-
-        firstPlayer.SpawnTank();
-        secondPlayer.SpawnTank();
-    }
-
-    private void EndGame()
+    protected void EndGame()
     {
         uiManager.OpenEndGameScreen(firstPlayer.Score, secondPlayer.Score);
     }
