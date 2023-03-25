@@ -7,12 +7,10 @@ public abstract class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    protected Player firstPlayer, secondPlayer;
-    [SerializeField]
     private Transform firstSpawn, secondSpawn;
-    [SerializeField]
     private Controls firstPlayerControls, secondPlayerControls;
-    [SerializeField]
+
+    protected Player firstPlayer, secondPlayer;    
     protected UIManager uiManager;
 
 
@@ -35,14 +33,9 @@ public abstract class GameManager : MonoBehaviour
         secondPlayerControls = controllers.transform.Find("SecondPlayerControls").GetComponent<Controls>();
         this.uiManager = uiManager;
 
-        CreatePlayers();
-
-    }
-    private void CreatePlayers()
-    {
-
         firstPlayer = new Player(firstSpawn, firstPlayerControls);
         secondPlayer = new Player(secondSpawn, secondPlayerControls);
+
     }
 
     abstract public void ReceiveNotificationOfTheTankDestruction(GameObject destroyedTank);
@@ -54,9 +47,6 @@ public abstract class GameManager : MonoBehaviour
 
         return true;
     }
-
-    
-
     protected void EndGame()
     {
         uiManager.OpenEndGameScreen(firstPlayer.Score, secondPlayer.Score);
