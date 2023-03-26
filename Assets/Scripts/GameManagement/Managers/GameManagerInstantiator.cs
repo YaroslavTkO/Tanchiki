@@ -13,7 +13,7 @@ public class GameManagerInstantiator : MonoBehaviour
     void Start()
     {
         //TODO: add script of game manager according to chosen gamemode
-        gameObject.AddComponent<DeathMatchManager>();
+        gameObject.AddComponent<KingOfTheHill>();
 
 
         GameManager.Instance.StartGame(spawnPoints, controllers, uiManager);

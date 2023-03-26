@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class KingOfTheHill : GameManager
 {
-    [SerializeField]
-    readonly private GameObject controlPointPrefab;
+    private GameObject ControlPointPrefab { get { return Resources.Load("ControlPoint") as GameObject; } }
 
     private GameObject controlPoint;
     public override void ReceiveNotificationOfTheTankDestruction(GameObject destroyedTank)
@@ -18,7 +17,26 @@ public class KingOfTheHill : GameManager
     {
         base.StartGame(spawnPoints, controllers, uiManager);
 
-        controlPoint = Instantiate(controlPointPrefab);
-        
+        controlPoint = Instantiate(ControlPointPrefab);
+        if (controlPoint.TryGetComponent<ControlPoint>(out var point))
+            point.Receiver = this;
+
+
+    }
+    public void ReceiveTankThatControlsPoint(GameObject tankAtThePoint)
+    {
+        if (firstPlayer.IsTankEquals(tankAtThePoint))
+            firstPlayer.AddScore();
+        else if (secondPlayer.IsTankEquals(tankAtThePoint))
+            secondPlayer.AddScore();
+
+        Debug.Log(firstPlayer.Score + " ###### " + secondPlayer.Score);
+
+        if (IsGameEnded(50))
+        {
+            Destroy(controlPoint);
+            EndGame();
+
+        }
     }
 }
