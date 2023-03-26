@@ -826,6 +826,7 @@ MonoBehaviour:
   spawnPoints: {fileID: 322876450}
   controllers: {fileID: 1365036592}
   uiManager: {fileID: 1733678283}
+  data: {fileID: 11400000, guid: 65205c93ef636bb44bb2f0c7e2862b9a, type: 2}
 --- !u!1 &1365036592 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4997236804778280076, guid: 36a5a6ef0086f1847b662163bab14f5f, type: 3}

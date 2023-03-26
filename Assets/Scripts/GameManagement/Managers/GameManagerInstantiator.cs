@@ -9,11 +9,15 @@ public class GameManagerInstantiator : MonoBehaviour
     [SerializeField]
     private GameObject controllers;
     [SerializeField]
-    protected UIManager uiManager;
+    private UIManager uiManager;
+    [SerializeField]
+    private SelectedData data;
     void Start()
     {
-        //TODO: add script of game manager according to chosen gamemode
-        gameObject.AddComponent<KingOfTheHill>();
+        if (data.gameMode == "Deathmatch")
+            gameObject.AddComponent<DeathMatchManager>();
+        else if (data.gameMode == "King of the hill")
+            gameObject.AddComponent<KingOfTheHill>();
 
 
         GameManager.Instance.StartGame(spawnPoints, controllers, uiManager);
