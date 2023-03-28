@@ -24,6 +24,7 @@ public class Player
     public void AddScore()
     {
         ++score;
+        controls.UpdateScoreDisplay(score);
     }
     public bool IsTankEquals(GameObject tank)
     {

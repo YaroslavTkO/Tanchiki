@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class Controls : MonoBehaviour
     [SerializeField] private Joystick movementJoystick;
 
     [SerializeField] private Button fireButton;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private int turretInput;
     public bool TryGetAngleOfMovementJoystick(out float angle)
@@ -60,6 +63,11 @@ public class Controls : MonoBehaviour
     public void ChangeTurretInput(int amountToChange)
     {
         turretInput += amountToChange;
+    }
+
+    public void UpdateScoreDisplay(int newScore)
+    {
+        scoreText.text = newScore.ToString();
     }
 
 

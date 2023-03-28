@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
         var textObject = endGameScreen.transform.Find("ResultsText");
         if(textObject != null)
         {
-            textObject.GetComponent<TextMeshProUGUI>().text = firstPlayerScore.ToString() + " : " + secondPlayerScore.ToString();
+            textObject.GetComponent<TextMeshProUGUI>().text = firstPlayerScore > secondPlayerScore ? "Won | Lost" : "Lost | Won";
         }
 
 
