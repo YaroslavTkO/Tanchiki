@@ -10,8 +10,8 @@ public class KingOfTheHill : GameManager
     public override void ReceiveNotificationOfTheTankDestruction(GameObject destroyedTank)
     {
         if (firstPlayer.IsTankEquals(destroyedTank))
-            firstPlayer.SpawnTank();
-        else secondPlayer.SpawnTank();
+            StartCoroutine(RespawnTankWithDelay(firstPlayer));
+        else StartCoroutine(RespawnTankWithDelay(secondPlayer));
     }
     override public void StartGame(GameObject spawnPoints, GameObject controllers, UIManager uiManager)
     {
@@ -36,5 +36,11 @@ public class KingOfTheHill : GameManager
             EndGame();
 
         }
+    }
+
+    private IEnumerator RespawnTankWithDelay(Player deadPlayer)
+    {
+        yield return new WaitForSeconds(1f);
+        deadPlayer.SpawnTank();
     }
 }
