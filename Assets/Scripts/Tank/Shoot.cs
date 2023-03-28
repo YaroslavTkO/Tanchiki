@@ -7,35 +7,16 @@ public class Shoot : MonoBehaviour
     private GameObject turret;
     public GameObject bulletPrefab;
 
-    readonly private static float reloadTime = 1f;
-    private float reloadTimeTimer = 0f;
-
-    public static float ReloadTime { get { return reloadTime; } }
-
     private void Start()
     {
         turret = gameObject;
-        reloadTimeTimer = Time.time;
-
     }
     private void ToShoot()
     {
-        if (Reloaded())
-        {
-            var obj = Instantiate(bulletPrefab, turret.transform.position, Quaternion.identity);
-            obj.GetComponent<Bullet>().Direction = turret.transform.right;
-        }
+        var obj = Instantiate(bulletPrefab, turret.transform.position, Quaternion.identity);
+        obj.GetComponent<Bullet>().Direction = turret.transform.right;
     }
 
-    private bool Reloaded()
-    {
-        if (Time.time - reloadTimeTimer >= reloadTime)
-        {
-            reloadTimeTimer = Time.time;
-            return true;
-        }
-        return false;
-    }
 
     public void AssignShootMethodToButton(Controls controls)
     {
