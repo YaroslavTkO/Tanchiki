@@ -7,8 +7,10 @@ public class Shoot : MonoBehaviour
     private GameObject turret;
     public GameObject bulletPrefab;
 
-    readonly private float reloadTime = 1f;
+    readonly private static float reloadTime = 1f;
     private float reloadTimeTimer = 0f;
+
+    public static float ReloadTime { get { return reloadTime; } }
 
     private void Start()
     {
