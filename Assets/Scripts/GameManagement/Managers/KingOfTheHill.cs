@@ -30,8 +30,6 @@ public class KingOfTheHill : GameManager
         else if (secondPlayer.IsTankEquals(tankAtThePoint))
             secondPlayer.AddScore();
 
-        Debug.Log(firstPlayer.Score + " ###### " + secondPlayer.Score);
-
         if (IsGameEnded(50))
         {
             Destroy(controlPoint);

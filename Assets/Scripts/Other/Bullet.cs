@@ -57,6 +57,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("IgnoreBullet"))
+            return;
         if (leftOriginalTankCollider)
         {
             DamageTank(collision.gameObject);
