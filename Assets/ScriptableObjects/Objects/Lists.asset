@@ -16,7 +16,7 @@ MonoBehaviour:
   - name: Map1
     spriteForMenu: {fileID: 0}
   - name: Bridge
-    spriteForMenu: {fileID: 0}
+    spriteForMenu: {fileID: 21300000, guid: c864f880137629f4a867f09679117e61, type: 3}
   gameModes:
   - Deathmatch
   - King of the hill
