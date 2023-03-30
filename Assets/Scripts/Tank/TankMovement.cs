@@ -6,7 +6,7 @@ public class TankMovement : MonoBehaviour
     private Controls controls;
 
     readonly private float _speed = 3f;
-    readonly private float _rotationSpeed = 0.8f;
+    readonly private float _rotationSpeed = 1.2f;
     readonly private float _backwardSpeedMultiplier = -0.6f;
     readonly private float _backwardRotationSpeedMultiplier = 0.7f;
 
