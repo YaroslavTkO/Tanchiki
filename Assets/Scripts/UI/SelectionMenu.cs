@@ -45,7 +45,7 @@ public class SelectionMenu : MonoBehaviour
     private void InstantiateMapCard(Map map)
     {
         var obj = Instantiate(MapCardPrefab, maps.transform);
-        obj.GetComponentInChildren<Image>().sprite = map.SpriteForMenu;
+        obj.transform.Find("MapImage").GetComponent<Image>().sprite = map.SpriteForMenu;
         obj.GetComponentInChildren<TextMeshProUGUI>().text = map.Name;
         obj.GetComponent<Button>().onClick.AddListener(() => ChooseMap(map.Name, obj));
 
