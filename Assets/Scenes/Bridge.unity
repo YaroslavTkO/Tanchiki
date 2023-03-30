@@ -732,6 +732,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 583686586537591482, guid: f5bc8c2c9a60af94facfc430a4059884, type: 3}
+      propertyPath: startingScreenPrefab
+      value: 
+      objectReference: {fileID: 4431392519509624443, guid: e7ade4e077c3db84e9be2fcb93b1d05a, type: 3}
     - target: {fileID: 583686586778826235, guid: f5bc8c2c9a60af94facfc430a4059884, type: 3}
       propertyPath: m_LocalScale.x
       value: 62

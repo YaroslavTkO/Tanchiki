@@ -43,4 +43,9 @@ public class KingOfTheHill : GameManager
         yield return new WaitForSeconds(1f);
         deadPlayer.SpawnTank();
     }
+
+    protected override void SetObjectiveText()
+    {
+        uiManager.OpenStartingScreen("Control center for 25 seconds");
+    }
 }

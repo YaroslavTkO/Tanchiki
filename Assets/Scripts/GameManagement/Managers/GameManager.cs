@@ -36,7 +36,10 @@ public abstract class GameManager : MonoBehaviour
         firstPlayer = new Player(firstSpawn, firstPlayerControls);
         secondPlayer = new Player(secondSpawn, secondPlayerControls);
 
+        SetObjectiveText();
+
     }
+    abstract protected void SetObjectiveText();
 
     abstract public void ReceiveNotificationOfTheTankDestruction(GameObject destroyedTank);
 

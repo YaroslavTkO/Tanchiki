@@ -21,6 +21,11 @@ public class DeathMatchManager : GameManager
 
     }
 
+    protected override void SetObjectiveText()
+    {
+        uiManager.OpenStartingScreen("Destroy enemy tank 5 times");
+    }
+
     private IEnumerator StartNewRound()
     {
 

@@ -13,7 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject pauseScreenPrefab;
     [SerializeField]
-    private GameObject pauseButtonPrefab; 
+    private GameObject pauseButtonPrefab;
+    [SerializeField]
+    private GameObject startingScreenPrefab;
 
 
     private GameObject betweenRoundsScreen;
@@ -88,6 +90,12 @@ public class UIManager : MonoBehaviour
     {
         pauseButton = Instantiate(pauseButtonPrefab, transform);
         pauseButton.GetComponent<Button>().onClick.AddListener(OpenPauseScreen);
+    }
+
+    public void OpenStartingScreen(string objectiveText)
+    {
+        var startingScreen = Instantiate(startingScreenPrefab, transform);
+        startingScreen.GetComponent<StartingScreen>().SetObjectiveText(objectiveText);
     }
 
 
