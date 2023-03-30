@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     private GameObject pauseScreen;
     private GameObject pauseButton;
 
-    private void Start()
+    private void Awake()
     {
         InstantiatePauseButton();
     }
