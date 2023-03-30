@@ -36,7 +36,7 @@ public class TankMovement : MonoBehaviour
         var dir = Quaternion.Euler(0, 0, angleToRotate);
         float rotate = _rotationSpeed * Time.deltaTime;
 
-        if (angleDiff > 100)
+        if (angleDiff > 90)
         {
             dir = Quaternion.Euler(0, 0, (angleToRotate + 180) % 360);
             rotate *= _backwardRotationSpeedMultiplier;
@@ -52,7 +52,7 @@ public class TankMovement : MonoBehaviour
         float inputSpeed = controls.getMovementJoystickSpeed();
         Vector3 movement = _speed * inputSpeed * Time.deltaTime * tank.transform.right;
 
-        if (angleDiff > 100)
+        if (angleDiff > 90)
             movement *= _backwardSpeedMultiplier;
 
         tank.transform.position += movement;

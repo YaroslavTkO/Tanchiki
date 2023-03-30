@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private GameObject bullet;
-    private Vector3 direction = Vector3.zero;
 
     readonly private int damage = 1;
     readonly private float speed = 18f;
@@ -13,11 +12,6 @@ public class Bullet : MonoBehaviour
     private float lifeTimeTimer = 0;
 
     private bool leftOriginalTankCollider = false;
-
-    public Vector3 Direction
-    {
-        set { direction = value; }
-    }
 
     private void Start()
     {
@@ -33,7 +27,8 @@ public class Bullet : MonoBehaviour
     }
     private void MoveBullet()
     {
-        bullet.transform.Translate(speed * Time.deltaTime * direction);
+        var movement = speed * Time.deltaTime * bullet.transform.right;
+        bullet.transform.position += movement;
 
     }
     

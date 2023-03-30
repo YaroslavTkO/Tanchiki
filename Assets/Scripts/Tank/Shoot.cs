@@ -13,8 +13,7 @@ public class Shoot : MonoBehaviour
     }
     private void ToShoot()
     {
-        var obj = Instantiate(bulletPrefab, turret.transform.position, Quaternion.identity);
-        obj.GetComponent<Bullet>().Direction = turret.transform.right;
+        Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
     }
 
 
