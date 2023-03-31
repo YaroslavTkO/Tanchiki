@@ -4,11 +4,14 @@ public class TankMovement : MonoBehaviour
 {
     private GameObject tank;
     private Controls controls;
+    private Animator animator;
 
     readonly private float _speed = 3f;
     readonly private float _rotationSpeed = 1.2f;
     readonly private float _backwardSpeedMultiplier = -0.6f;
     readonly private float _backwardRotationSpeedMultiplier = 0.7f;
+
+
 
     public Controls Controls
     {
@@ -28,6 +31,11 @@ public class TankMovement : MonoBehaviour
             var angleDiff = Mathf.Abs((angle - tank.transform.eulerAngles.z + 180 + 360) % 360 - 180);
             RotateTank(angle, angleDiff);
             MoveTank(angleDiff);
+        }
+        else
+        {
+            if (animator.GetInteger("speed") != 0)
+                animator.SetInteger("speed", 0);
         }
     }
 
@@ -53,7 +61,16 @@ public class TankMovement : MonoBehaviour
         Vector3 movement = _speed * inputSpeed * Time.deltaTime * tank.transform.right;
 
         if (angleDiff > 90)
+        {
             movement *= _backwardSpeedMultiplier;
+            if (animator.GetInteger("speed") >= 0)
+                animator.SetInteger("speed", -1);
+        }
+        else
+        {
+            if (animator.GetInteger("speed") <= 0)
+                animator.SetInteger("speed", 1);
+        }
 
         tank.transform.position += movement;
     }
@@ -61,6 +78,7 @@ public class TankMovement : MonoBehaviour
     private void Start()
     {
         tank = gameObject;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
