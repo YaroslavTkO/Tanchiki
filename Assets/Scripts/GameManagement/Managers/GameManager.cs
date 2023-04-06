@@ -10,7 +10,7 @@ public abstract class GameManager : MonoBehaviour
     private Transform firstSpawn, secondSpawn;
     private Controls firstPlayerControls, secondPlayerControls;
 
-    protected Player firstPlayer, secondPlayer;    
+    protected Player firstPlayer, secondPlayer;
     protected UIManager uiManager;
 
 

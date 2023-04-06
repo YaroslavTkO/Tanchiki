@@ -19,8 +19,8 @@ public class GameManagerInstantiator : MonoBehaviour
         else if (data.gameMode == "King of the hill")
             gameObject.AddComponent<KingOfTheHill>();
 
-
-        GameManager.Instance.StartGame(spawnPoints, controllers, uiManager);
+        if (GameManager.Instance != null)
+            GameManager.Instance.StartGame(spawnPoints, controllers, uiManager);
 
     }
 }
