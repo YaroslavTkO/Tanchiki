@@ -64,7 +64,7 @@ public class SelectionMenu : MonoBehaviour
         selectedData.mapName = mapName;
 
         if (selectedMapImage != null)
-            selectedMapImage.color = Color.black;
+            selectedMapImage.color = new Color(0.6f, 0.6f, 0.6f);
         selectedMapImage = caller.GetComponent<Image>();
         selectedMapImage.color = selectedColor;
 
