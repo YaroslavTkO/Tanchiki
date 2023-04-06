@@ -546,6 +546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 39f86deab0501154283dbf64e2a9556d, type: 2}
   selectedData: {fileID: 11400000, guid: 65205c93ef636bb44bb2f0c7e2862b9a, type: 2}
+  selectedModeButtonSprite: {fileID: 331968427, guid: 3ed4e8fd1c3649848ba1a5d5bf19d11a, type: 3}
+  defaultModeButtonSprite: {fileID: 1665968007, guid: 3ed4e8fd1c3649848ba1a5d5bf19d11a, type: 3}
 --- !u!1 &1697375946
 GameObject:
   m_ObjectHideFlags: 0

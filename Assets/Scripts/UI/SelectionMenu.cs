@@ -17,6 +17,11 @@ public class SelectionMenu : MonoBehaviour
     private Image selectedMapImage, selectedModeImage;
     private Color selectedColor = new(0.2f, 0.8f, 0.2f, 1);
 
+    [SerializeField]
+    private Sprite selectedModeButtonSprite;
+    [SerializeField]
+    private Sprite defaultModeButtonSprite;
+
     private GameObject MapsPrefab { get { return Resources.Load("SelectionMenu/Maps") as GameObject; } }
     private GameObject ModesPrefab { get { return Resources.Load("SelectionMenu/Modes") as GameObject; } }
     private GameObject MapCardPrefab { get { return Resources.Load("SelectionMenu/MapUiPrefab") as GameObject; } }
@@ -73,9 +78,11 @@ public class SelectionMenu : MonoBehaviour
     {
         selectedData.gameMode = modeName;
         if (selectedModeImage != null)
-            selectedModeImage.color = Color.white;
+            // selectedModeImage.color = Color.white;
+            selectedModeImage.sprite = defaultModeButtonSprite;
         selectedModeImage = caller.GetComponent<Image>();
-        selectedModeImage.color = selectedColor;
+        //  selectedModeImage.color = selectedColor;
+        selectedModeImage.sprite = selectedModeButtonSprite;
     }
 
     private void Play()
