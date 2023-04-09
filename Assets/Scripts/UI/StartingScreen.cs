@@ -21,10 +21,12 @@ public class StartingScreen : MonoBehaviour
     {
         for (; starting > 0; starting--)
         {
+            AudioManager.Instance.PlaySound("CountDown");
             countDownText.text = starting.ToString();
 
             yield return new WaitForSeconds(1f);
         }
+        AudioManager.Instance.PlaySound("StartSound");
 
 
     }
