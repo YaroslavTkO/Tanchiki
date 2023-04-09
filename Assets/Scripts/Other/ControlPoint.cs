@@ -45,8 +45,9 @@ public class ControlPoint : MonoBehaviour
     {
         while (receiver != null)
         {
+            AudioManager.Instance.PlaySound("Point");
             receiver.ReceiveTankThatControlsPoint(tank);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
     }
 }

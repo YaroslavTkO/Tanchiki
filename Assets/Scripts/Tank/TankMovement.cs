@@ -5,6 +5,7 @@ public class TankMovement : MonoBehaviour
     private GameObject tank;
     private Controls controls;
     private Animator animator;
+    private AudioSource audioSource;
 
     readonly private float _speed = 3f;
     readonly private float _rotationSpeed = 1.2f;
@@ -28,12 +29,15 @@ public class TankMovement : MonoBehaviour
 
         if (controls.TryGetAngleOfMovementJoystick(out var angle))
         {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
             var angleDiff = Mathf.Abs((angle - tank.transform.eulerAngles.z + 180 + 360) % 360 - 180);
             RotateTank(angle, angleDiff);
             MoveTank(angleDiff);
         }
         else
         {
+            audioSource.Stop();
             if (animator.GetInteger("speed") != 0)
                 animator.SetInteger("speed", 0);
         }
@@ -79,6 +83,7 @@ public class TankMovement : MonoBehaviour
     {
         tank = gameObject;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()

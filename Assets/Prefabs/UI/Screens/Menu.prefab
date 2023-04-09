@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 5479793027549308692}
   - component: {fileID: 5479793027549308691}
   - component: {fileID: 7662972387211193175}
+  - component: {fileID: 2130608655142380326}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -327,6 +328,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2130608655142380326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479793027549308689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32574b0158e796c4c84cd32c4da3a9b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5479793028394273728
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +431,7 @@ GameObject:
   - component: {fileID: 5479793028627984114}
   - component: {fileID: 5479793028627984113}
   - component: {fileID: 5479793028627984112}
+  - component: {fileID: 4957394667402608785}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -527,3 +541,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4957394667402608785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479793028627982606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32574b0158e796c4c84cd32c4da3a9b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

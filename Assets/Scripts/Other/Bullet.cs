@@ -56,6 +56,7 @@ public class Bullet : MonoBehaviour
             return;
         if (leftOriginalTankCollider)
         {
+            AudioManager.Instance.PlaySound("Hit");
             DamageTank(collision.gameObject);
             Destroy(bullet);
         }
