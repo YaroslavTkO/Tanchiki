@@ -80,5 +80,10 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     name: StartSound
+  - clip: {fileID: 8300000, guid: fcaaece568b27194486a94696d14d93a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    name: EndGame
   isMusicOn: 1
   isSFXOn: 1

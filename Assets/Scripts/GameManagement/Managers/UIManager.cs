@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     
     public void OpenEndGameScreen(int firstPlayerScore, int secondPlayerScore)
     {
+        AudioManager.Instance.PlaySound("EndGame");
         endGameScreen = Instantiate(endGameScreenPrefab, transform);
         SetEndGameScoreText(firstPlayerScore, secondPlayerScore);
     }

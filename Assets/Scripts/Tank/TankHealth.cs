@@ -4,7 +4,7 @@ public class TankHealth : MonoBehaviour
 {
     private GameObject tank;
 
-    readonly private int _hitpoints = 4;
+    readonly private int _hitpoints = 3;
     private int _currentHitpoints;
 
     private void Start()
