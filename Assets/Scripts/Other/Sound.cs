@@ -32,5 +32,13 @@ public class Sound
 
     }
 
+    public void ChangeVolume(bool isNotMuted)
+    {
+        if (isNotMuted)
+            source.volume = volume;
+        else
+            source.volume = 0f;
+
+    }
 
 }

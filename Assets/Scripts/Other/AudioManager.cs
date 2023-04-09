@@ -11,6 +11,9 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance;
 
+    public bool isMusicOn = true;
+    public bool isSFXOn = true;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -50,5 +53,25 @@ public class AudioManager : MonoBehaviour
         PlaySound("Theme");
     }
 
+    public void ChangeSfxVolume(bool isNotMuted)
+    {
+        isSFXOn = isNotMuted;
+        foreach(var sound in sounds)
+            if(sound.name != "Theme")
+            {
+                sound.ChangeVolume(isNotMuted);
+            }
+    }
+
+    public void ChangeMusicVolume(bool isNotMuted)
+    {
+        isMusicOn = isNotMuted;
+        foreach (var sound in sounds)
+            if (sound.name == "Theme")
+            {
+                sound.ChangeVolume(isNotMuted);
+            }
+
+    }
 }
 
