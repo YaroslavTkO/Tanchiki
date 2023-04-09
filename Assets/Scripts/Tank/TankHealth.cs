@@ -24,6 +24,7 @@ public class TankHealth : MonoBehaviour
     private void DestroyTank()
     {
         GameManager.Instance.ReceiveNotificationOfTheTankDestruction(tank);
+        AudioManager.Instance.PlaySound("TankDeath");
         Destroy(tank);
     }
 }

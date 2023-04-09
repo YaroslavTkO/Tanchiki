@@ -65,3 +65,10 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     name: Point
+  - clip: {fileID: 8300000, guid: fd9e5056991002241b08aa89f087bb8a, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    name: TankDeath
+  isMusicOn: 1
+  isSFXOn: 1
