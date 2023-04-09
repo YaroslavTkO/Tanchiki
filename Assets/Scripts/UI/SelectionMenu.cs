@@ -87,7 +87,7 @@ public class SelectionMenu : MonoBehaviour
 
     private void Play()
     {
-        if (selectedData.mapName != "")
+        if (selectedData.mapName != "" && selectedData.gameMode != "")
             SceneManager.LoadScene(selectedData.mapName);
     }
 }
